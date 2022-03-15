@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Smooch+Sans:wght@200&display=swap");
+
+body {
+  background-color: #96c6e2;
+  color: rgb(255, 255, 255);
+  font-size: x-large;
+  font-family: "Smooch Sans", sans-serif;
+}
+
+input[type="text"] {
+  width: 90px;
+  height: 60px;
+  font-family: "Smooch Sans", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 0px;
+  text-align: center;
+  margin: 2px;
+}
+
+select {
+  width: 200px;
+  height: 60px;
+  padding: 0px 0px;
+  border: 2px solid black;
+  border-radius: 0px;
+  background-color: white;
+  font-size: x-large;
+  font-family: "Smooch Sans", sans-serif;
+  font-weight: 900;
+  text-align: center;
+  display: flex;
+  margin: 0.5em auto;
+}
+
+.submit input {
+  width: 200px;
+  height: 60px;
+  padding: 0px 0px;
+  border: 2px solid black;
+  border-radius: 0px;
+  font-size: x-large;
+  font-family: "Smooch Sans", sans-serif;
+  font-weight: bold;
+  background: #f9baff;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  margin: 0.5em auto;
+}
+
+.submit input:hover {
+  background: #f8a9ff;
+}
+
+.submit input:active {
+  background-color: #f697ff;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.container h1 {
+  font-size: 60px;
+  width: fit-content;
+  color: white;
+  margin: 20px auto;
+  text-shadow: 2px 2px 2px #f697ff;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.output { 
+  width: 200px;
+  text-align:center;
+  font-weight:900;
+  background-color:#f9baff;
+  color: black;
+  margin: auto;
+  border: solid 2px #000000;
+  box-sizing: border-box;
+}
+
