@@ -60,10 +60,17 @@ select {
   transform: translateY(4px);
 }
 
+.submit input:active {  
+  background: #2db34a;
+  transition-property: background;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
 .container h1 {
   font-size: 60px;
   width: fit-content;
-  color: white;
+  color: white; 
   margin: 20px auto;
   text-shadow: 2px 2px 2px #f697ff;
 }
@@ -76,6 +83,7 @@ select {
 
 .output { 
   width: 200px;
+  height: 0px;
   text-align:center;
   font-weight:900;
   background-color:#f9baff;
