@@ -1,12 +1,20 @@
 const formAnim = document.getElementById("form");
-const submit = document.getElementById("output");
-var changeHeight;
+const submitOutput = document.getElementById("output");
+var submit = 1;
 
 function submitAnim() {
-    changeHeight = 200;
-    changeHeight = changeHeight.toString();
-    console.log(typeof changeHeight);
-  submit.style.height = `${changeHeight}px`;
+  if (submit % 2 == 0) {
+    submitOutput.style = "animation-name: outputClose;";
+  } else {
+    submitOutput.style = "animation-name: output;";
+  }
+}
+
+function submitClick() {
+  submit++;
+  console.log(submit);
+  return submit;
 }
 
 formAnim.addEventListener("submit", submitAnim);
+formAnim.addEventListener("submit", submitClick);
