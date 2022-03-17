@@ -48,6 +48,8 @@ select {
   justify-content: center;
   display: flex;
   margin: 0.5em auto;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
 }
 
 .submit input:hover {
@@ -58,13 +60,6 @@ select {
   background-color: #f697ff;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
-}
-
-.submit input:active {
-  background: #2db34a;
-  transition-property: background;
-  transition-duration: 1s;
-  transition-timing-function: linear;
 }
 
 .container h1 {
@@ -100,16 +95,16 @@ select {
   0% {
     height: 0px;
     font-size: 0px;
-    color:#ffffff00
+    color: #ffffff00;
   }
 
-50% { 
-  background-color: white;
-}
+  50% {
+    background-color: white;
+  }
 
   100% {
     height: 100px;
-    color:#000000;
+    color: #000000;
     font-size: 100%;
   }
 }
@@ -118,16 +113,30 @@ select {
   0% {
     height: 100px;
     font-size: 100%;
-    color:#000000
+    color: #000000;
   }
 
-50% { 
-  background-color: white;
-}
+  50% {
+    background-color: white;
+  }
 
   100% {
     height: 0px;
-    color:#00000000;
+    color: #00000000;
     font-size: 0%;
+  }
+}
+
+@keyframes submit {
+  0% {
+
+  }
+
+  50% {
+
+  }
+
+  100% {
+  
   }
 }

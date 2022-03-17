@@ -2,7 +2,7 @@ const formAnim = document.getElementById("form");
 const submitOutput = document.getElementById("output");
 var submit = 1;
 
-function submitAnim() {
+function outputAnim() {
   if (submit % 2 == 0) {
     submitOutput.style = "animation-name: outputClose;";
   } else {
@@ -16,5 +16,10 @@ function submitClick() {
   return submit;
 }
 
-formAnim.addEventListener("submit", submitAnim);
+function submitAnim() { 
+  document.getElementById("submitAnim").style = "animation-name: submit;"
+}
+
+formAnim.addEventListener("submit", outputAnim);
 formAnim.addEventListener("submit", submitClick);
+formAnim.addEventListener("submit", submitAnim);
