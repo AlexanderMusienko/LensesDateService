@@ -143,13 +143,15 @@ select {
   }
 }
 
-@keyframes submit {
+@keyframes staticOut {
   0% {
+    background-color: rebeccapurple;
   }
 
   50% {
   }
 
   100% {
+    background-color: aqua;
   }
 }
