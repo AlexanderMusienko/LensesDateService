@@ -1,36 +1,35 @@
 const formAnim = document.getElementById("form");
 const submitOutput = document.getElementById("output");
-var submit = 1;
+var submit = 0;
 var day, month, lenses;
+var formValue = [];
 
 function retrieveValue() {
-day = formAnim.querySelector('[name="day"]').value,
-month = formAnim.querySelector('[name="month"]').value,
-lenses = formAnim.querySelector('[name="lensesExpiration"]').value;
+  (day = formAnim.querySelector('[name="day"]').value),
+    (month = formAnim.querySelector('[name="month"]').value),
+    (lenses = formAnim.querySelector('[name="lensesExpiration"]').value);
+  if (submit <= 2) formValue = [day, month, lenses];
 }
 
-var formValue = [day, month, lenses];
-
 function formMemory() {
-  console.log(month);
-  formValue.push(day, month, lenses);
-  console.log(`Длина массива: ${formValue.length}`);
-  if (formValue.length > 6) {
-    formValue.splice(0, 3);
-    console.log(`Длина массива после удаления: ${formValue.length}`);
-    console.log(`Массив старый: ${formValue[0]};${formValue[1]};${formValue[2]}`);
-    console.log(`Массив новый: ${formValue[3]};${formValue[4]};${formValue[5]}`);
-  }
-};
-
+  formValue.unshift(day, month, lenses);
+  formValue.length = 6;
+  console.log(`Массив: ${formValue}`);
+  console.log(`Массив новый: ${formValue[0]};${formValue[1]};${formValue[2]}`);
+  console.log(`Массив старый: ${formValue[3]};${formValue[4]};${formValue[5]}`);
+}
 
 function outputAnim() {
   if (submit % 2 == 0) {
-    (formValue[0] != formValue[3]) ? submitOutput.style = "animation-name: outputSwipe;" : submitOutput.style = "animation-name: outputClose;";  
-  } else {  
-    submitOutput.style = "animation-name: output;"; 
+    formValue[0] != formValue[3] ||
+    formValue[1] != formValue[4] ||
+    formValue[2] != formValue[5]
+      ? (submitOutput.style = "animation-name: outputSwipe;")
+      : (submitOutput.style = "animation-name: outputClose;");
+  } else {
+    submitOutput.style = "animation-name: output;";
   }
-  }
+}
 
 function submitClick() {
   submit++;
@@ -38,18 +37,7 @@ function submitClick() {
   return submit;
 }
 
-function submitAnim() {
-  document.getElementById("submitAnim").style = "animation-name: submit;";
-}
-
-/*function staticOutTransition() {
-  if (day == day && month == month && lenses == lenses) {
-    submitOutput.style = "animation-name: staticOut;"
-  }
-}
-*/
-
-formAnim.addEventListener("submit", outputAnim);
 formAnim.addEventListener("submit", submitClick);
 formAnim.addEventListener("submit", retrieveValue);
 formAnim.addEventListener("submit", formMemory);
+formAnim.addEventListener("submit", outputAnim);
