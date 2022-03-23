@@ -4,6 +4,7 @@ var submit = 0;
 var day, month, lenses;
 var formValue = [];
 var compare; // if value is not identic return true
+var outputSwipe = "animation-name: outputSwipe;"
 
 function valueCompare() { 
   compare = 
@@ -18,6 +19,8 @@ function retrieveValue() {
     (month = formAnim.querySelector('[name="month"]').value),
     (lenses = formAnim.querySelector('[name="lensesExpiration"]').value);
   if (submit <= 1) formValue = [day, month, lenses];
+  var styleState = submitOutput.style; // сделать вывод animation-name
+  console.log(styleState);
 }
 
 function formMemory() {
@@ -31,11 +34,11 @@ function formMemory() {
 function outputAnim() {
   if (submit % 2 == 0) { // четное
     compare
-      ? (submitOutput.style = "animation-name: outputSwipe;")
+      ? (submitOutput.style = outputSwipe)
       : (submitOutput.style = "animation-name: outputClose;");
   } else { // нечетное
     compare
-      ? (submitOutput.style = "animation-name: outputSwipeRepeat;")
+      ? (submitOutput.style = outputSwipe)
       : (compare == false) ? submitOutput.style = "animation-name: outputClose;" : submitOutput.style = "animation-name: output;";
   }
 }
