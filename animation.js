@@ -3,12 +3,21 @@ const submitOutput = document.getElementById("output");
 var submit = 0;
 var day, month, lenses;
 var formValue = [];
+var compare; // if value is not identic return true
+
+function valueCompare() { 
+  compare = 
+  (formValue[0] != formValue[3] ||
+    formValue[1] != formValue[4] ||
+    formValue[2] != formValue[5]);
+    return compare;
+}
 
 function retrieveValue() {
   (day = formAnim.querySelector('[name="day"]').value),
     (month = formAnim.querySelector('[name="month"]').value),
     (lenses = formAnim.querySelector('[name="lensesExpiration"]').value);
-  if (submit <= 2) formValue = [day, month, lenses];
+  if (submit <= 1) formValue = [day, month, lenses];
 }
 
 function formMemory() {
@@ -20,14 +29,14 @@ function formMemory() {
 }
 
 function outputAnim() {
-  if (submit % 2 == 0) {
-    formValue[0] != formValue[3] ||
-    formValue[1] != formValue[4] ||
-    formValue[2] != formValue[5]
+  if (submit % 2 == 0) { // четное
+    compare
       ? (submitOutput.style = "animation-name: outputSwipe;")
       : (submitOutput.style = "animation-name: outputClose;");
-  } else {
-    submitOutput.style = "animation-name: output;";
+  } else { // нечетное
+    compare
+      ? (submitOutput.style = "animation-name: outputSwipeRepeat;")
+      : (compare == false) ? submitOutput.style = "animation-name: outputClose;" : submitOutput.style = "animation-name: output;";
   }
 }
 
@@ -40,4 +49,5 @@ function submitClick() {
 formAnim.addEventListener("submit", submitClick);
 formAnim.addEventListener("submit", retrieveValue);
 formAnim.addEventListener("submit", formMemory);
+formAnim.addEventListener("submit", valueCompare);
 formAnim.addEventListener("submit", outputAnim);
