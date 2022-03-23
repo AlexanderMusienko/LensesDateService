@@ -8,7 +8,7 @@ function retrieveValue() {
   (day = formAnim.querySelector('[name="day"]').value),
     (month = formAnim.querySelector('[name="month"]').value),
     (lenses = formAnim.querySelector('[name="lensesExpiration"]').value);
-  if (submit <= 2) formValue = [day, month, lenses];
+  if (submit <= 1) formValue = [day, month, lenses];
 }
 
 function formMemory() {
@@ -27,7 +27,11 @@ function outputAnim() {
       ? (submitOutput.style = "animation-name: outputSwipe;")
       : (submitOutput.style = "animation-name: outputClose;");
   } else {
-    submitOutput.style = "animation-name: output;";
+    formValue[0] != formValue[3] ||
+    formValue[1] != formValue[4] ||
+    formValue[2] != formValue[5]
+      ? (submitOutput.style = "animation-name: outputSwipe;")
+      : (submitOutput.style = "animation-name: output;");
   }
 }
 
