@@ -3,12 +3,27 @@ const submitOutput = document.getElementById("output");
 var submit = 0;
 var day, month, lenses;
 var formValue = [];
+var compare; // if value is not identic return true
+var outputSwipe = "animation-name: outputSwipe;"
+
+function valueCompare() { 
+  compare = 
+  (formValue[0] != formValue[3] ||
+    formValue[1] != formValue[4] ||
+    formValue[2] != formValue[5]);
+    return compare;
+}
 
 function retrieveValue() {
   (day = formAnim.querySelector('[name="day"]').value),
     (month = formAnim.querySelector('[name="month"]').value),
     (lenses = formAnim.querySelector('[name="lensesExpiration"]').value);
   if (submit <= 1) formValue = [day, month, lenses];
+<<<<<<< HEAD
+=======
+  var styleState = submitOutput.style; // сделать вывод animation-name
+  console.log(styleState);
+>>>>>>> 70f31e5253ca3ead3c79ef5abe7b90672b1aae84
 }
 
 function formMemory() {
@@ -20,18 +35,23 @@ function formMemory() {
 }
 
 function outputAnim() {
-  if (submit % 2 == 0) {
-    formValue[0] != formValue[3] ||
-    formValue[1] != formValue[4] ||
-    formValue[2] != formValue[5]
-      ? (submitOutput.style = "animation-name: outputSwipe;")
+  if (submit % 2 == 0) { // четное
+    compare
+      ? (submitOutput.style = outputSwipe)
       : (submitOutput.style = "animation-name: outputClose;");
+<<<<<<< HEAD
   } else {
     formValue[0] != formValue[3] ||
     formValue[1] != formValue[4] ||
     formValue[2] != formValue[5]
       ? (submitOutput.style = "animation-name: outputSwipe;")
       : (submitOutput.style = "animation-name: output;");
+=======
+  } else { // нечетное
+    compare
+      ? (submitOutput.style = outputSwipe)
+      : (compare == false) ? submitOutput.style = "animation-name: outputClose;" : submitOutput.style = "animation-name: output;";
+>>>>>>> 70f31e5253ca3ead3c79ef5abe7b90672b1aae84
   }
 }
 
@@ -44,4 +64,5 @@ function submitClick() {
 formAnim.addEventListener("submit", submitClick);
 formAnim.addEventListener("submit", retrieveValue);
 formAnim.addEventListener("submit", formMemory);
+formAnim.addEventListener("submit", valueCompare);
 formAnim.addEventListener("submit", outputAnim);
