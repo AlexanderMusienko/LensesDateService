@@ -35,29 +35,30 @@ function outputAnim() {
     case "":
       submitOutput.style = "animation-name: output;";
       break;
-      
+
     case "output":
-      if (compare) {  
+      if (compare) {
         submitOutput.style = "animation-name: outputSwipe";
-      } else {  
-        submitOutput.style = "animation-name: outputClose";
-      }
-      break;
-      
-    case "outputSwipe":
-      if (compare) {  
-        submitOutput.style = "animation-name: outputSwipeRepeat";
-      } else {  
+      } else {
         submitOutput.style = "animation-name: outputClose";
       }
       break;
 
-      case "outputSwipeRepeat":
-        if (compare) {  
-          submitOutput.style = "animation-name: outputSwipe";
-        } else {  
-          submitOutput.style = "animation-name: outputClose";
-        }
+    case "outputSwipe":
+      if (compare) {
+        submitOutput.style = "animation-name: outputSwipeRepeat";
+      } else {
+        submitOutput.style = "animation-name: outputClose";
+      }
+      break;
+
+    case "outputSwipeRepeat":
+      if (compare) {
+        submitOutput.style = "animation-name: outputSwipe";
+      } else {
+        submitOutput.style = "animation-name: outputClose";
+      }
+      break;
   }
 }
 
