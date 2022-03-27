@@ -4,14 +4,14 @@ var submit = 0;
 var day, month, lenses;
 var formValue = [];
 var compare; // if value is not identic return true
-var outputSwipe = "animation-name: outputSwipe;"
+var styleState;
 
-function valueCompare() { 
-  compare = 
-  (formValue[0] != formValue[3] ||
+function valueCompare() {
+  compare =
+    formValue[0] != formValue[3] ||
     formValue[1] != formValue[4] ||
-    formValue[2] != formValue[5]);
-    return compare;
+    formValue[2] != formValue[5];
+  return compare;
 }
 
 function retrieveValue() {
@@ -19,8 +19,6 @@ function retrieveValue() {
     (month = formAnim.querySelector('[name="month"]').value),
     (lenses = formAnim.querySelector('[name="lensesExpiration"]').value);
   if (submit <= 1) formValue = [day, month, lenses];
-  var styleState = submitOutput.style; // сделать вывод animation-name
-  console.log(styleState);
 }
 
 function formMemory() {
@@ -32,15 +30,34 @@ function formMemory() {
 }
 
 function outputAnim() {
-  if (submit % 2 == 0) { // четное
-    compare
-      ? (submitOutput.style = outputSwipe)
-      : (submitOutput.style = "animation-name: outputClose;");
+  switch (styleState) {
+    case "outputClose":
+    case "":
+      submitOutput.style = "animation-name: output;";
+      break;
       
-  } else { // нечетное
-    compare
-      ? (submitOutput.style = outputSwipe)
-      : (compare == false) ? submitOutput.style = "animation-name: outputClose;" : submitOutput.style = "animation-name: output;";
+    case "output":
+      if (compare) {  
+        submitOutput.style = "animation-name: outputSwipe";
+      } else {  
+        submitOutput.style = "animation-name: outputClose";
+      }
+      break;
+      
+    case "outputSwipe":
+      if (compare) {  
+        submitOutput.style = "animation-name: outputSwipeRepeat";
+      } else {  
+        submitOutput.style = "animation-name: outputClose";
+      }
+      break;
+
+      case "outputSwipeRepeat":
+        if (compare) {  
+          submitOutput.style = "animation-name: outputSwipe";
+        } else {  
+          submitOutput.style = "animation-name: outputClose";
+        }
   }
 }
 
@@ -50,8 +67,14 @@ function submitClick() {
   return submit;
 }
 
+function retrieveStyleValue() {
+  styleState = submitOutput.style.animationName;
+  console.log(styleState);
+}
+
 formAnim.addEventListener("submit", submitClick);
 formAnim.addEventListener("submit", retrieveValue);
 formAnim.addEventListener("submit", formMemory);
 formAnim.addEventListener("submit", valueCompare);
+formAnim.addEventListener("submit", retrieveStyleValue);
 formAnim.addEventListener("submit", outputAnim);
