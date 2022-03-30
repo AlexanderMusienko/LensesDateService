@@ -1,5 +1,6 @@
 const formAnim = document.getElementById("form");
 const submitOutput = document.getElementById("output");
+const submitButton = document.getElementById("submitAnim");
 var submit = 0;
 var day, month, lenses;
 var formValue = [];
@@ -73,9 +74,14 @@ function retrieveStyleValue() {
   console.log(styleState);
 }
 
+function buttonAnim() { 
+  submitButton.style = "animation-name: buttonAnim;"
+}
+
 formAnim.addEventListener("submit", submitClick);
 formAnim.addEventListener("submit", retrieveValue);
 formAnim.addEventListener("submit", formMemory);
 formAnim.addEventListener("submit", valueCompare);
 formAnim.addEventListener("submit", retrieveStyleValue);
 formAnim.addEventListener("submit", outputAnim);
+formAnim.addEventListener("submit", buttonAnim);

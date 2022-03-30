@@ -204,3 +204,17 @@ select {
     visibility: visible
   }
 }
+
+@keyframes buttonAnim { 
+  0% {  
+    background-color:#f8a9ff;
+  }
+
+  50% { 
+    background-color:#ffffff;
+  }
+
+  100% {  
+    background-color:#f8a9ff;
+  }
+}
