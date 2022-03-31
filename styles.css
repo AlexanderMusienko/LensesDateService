@@ -34,7 +34,7 @@ select {
   margin: 0.5em auto;
 }
 
-.submit input {
+.submit button {
   width: 200px;
   height: 60px;
   padding: 0px 0px;
@@ -43,20 +43,25 @@ select {
   font-size: x-large;
   font-family: "Smooch Sans", sans-serif;
   font-weight: bold;
+  cursor: pointer;
   background: #f9baff;
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  margin: 0.5em auto;
+  margin: 0 auto;
+  display: block;
   animation-duration: 3s;
   animation-fill-mode: forwards;
 }
 
-.submit input:hover {
+.submit button i {
+  text-shadow: 3px 0px rgb(0, 0, 0);
+  color: rgb(0, 255, 85); 
+  font-size: 45px;
+}
+
+.submit button:hover {
   background: #f8a9ff;
 }
 
-.submit input:active {
+.submit button:active {
   background-color: #f697ff;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
@@ -207,14 +212,15 @@ select {
 
 @keyframes buttonAnim { 
   0% {  
-    background-color:#f8a9ff;
+    
   }
 
   50% { 
-    background-color:#ffffff;
+    width: 60px;
+    
   }
 
   100% {  
-    background-color:#f8a9ff;
+    
   }
 }
