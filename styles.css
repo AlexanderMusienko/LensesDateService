@@ -16,7 +16,7 @@ input[type="text"] {
   border: 2px solid rgb(0, 0, 0);
   border-radius: 0px;
   text-align: center;
-  margin: 2px;
+  margin-inline: 2px;
 }
 
 select {
@@ -45,7 +45,7 @@ select {
   font-weight: bold;
   cursor: pointer;
   background: #f9baff;
-  margin: 0 auto;
+  margin: 0.5em auto;
   display: block;
   animation-duration: 3s;
   animation-fill-mode: forwards;
