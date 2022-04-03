@@ -34,7 +34,15 @@ select {
   margin: 0.5em auto;
 }
 
-.submit button {
+.submit { 
+  position: relative;
+  margin: 0em auto;
+  width: 200px;
+  height: 60px;
+}
+
+#submitAnim {
+  position: absolute;
   width: 200px;
   height: 60px;
   padding: 0px 0px;
@@ -51,10 +59,23 @@ select {
   animation-fill-mode: forwards;
 }
 
-.submit button i {
-  text-shadow: 3px 0px rgb(0, 0, 0);
-  color: rgb(0, 255, 85); 
-  font-size: 45px;
+.divMask {  
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  padding: 0px 0px;
+  border: 2px solid black;
+  border-radius: 0px;
+  font-size: x-large;
+  font-family: "Smooch Sans", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  background: #f9baff;
+  margin: 0.5em auto;
+  display: block;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  box-sizing: border-box;
 }
 
 .submit button:hover {

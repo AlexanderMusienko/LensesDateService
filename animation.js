@@ -1,6 +1,7 @@
 const formAnim = document.getElementById("form");
 const submitOutput = document.getElementById("output");
 const submitButton = document.getElementById("submitAnim");
+const submitI = document.getElementById("submitAnim");
 var submit = 0;
 var day, month, lenses;
 var formValue = [];
@@ -76,6 +77,8 @@ function retrieveStyleValue() {
 
 function buttonAnim() { 
   submitButton.style = "animation-name: buttonAnim;"
+  submitButton.innerHTML = '';
+  
 }
 
 formAnim.addEventListener("submit", submitClick);
