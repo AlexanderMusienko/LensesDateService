@@ -1,7 +1,7 @@
 const formAnim = document.getElementById("form");
 const submitOutput = document.getElementById("output");
 const submitButton = document.getElementById("submitAnim");
-const submitI = document.getElementById("submitAnim");
+const submitAnimCheck = document.getElementById("submitAnimCheck");
 var submit = 0;
 var day, month, lenses;
 var formValue = [];
@@ -77,8 +77,8 @@ function retrieveStyleValue() {
 
 function buttonAnim() { 
   submitButton.style = "animation-name: buttonAnim;"
-  submitButton.innerHTML = '';
-  
+  submitAnimCheck.style = "animation-name: buttonAnimCheck;"
+  setTimeout(() => submitAnimCheck.innerHTML = '<i class="fa-solid fa-check"></i> Successful', 1500);
 }
 
 formAnim.addEventListener("submit", submitClick);
