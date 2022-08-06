@@ -38,7 +38,7 @@ function retrieveDesiredBuyDate() {
     `Дата покупки: ${buyDate}, Планируемая дата новой покупки: ${desiredBuyDate}, Оставшееся число дней: ${timeLeft}`
   );
 
-  document.querySelector('.output').innerHTML = `Next purchase: <br>${easyDesiredBuyDate}, <br>Days left: ${timeLeft}`;
+  document.querySelector('.landing-output-container').innerHTML = `Next purchase: <br>${easyDesiredBuyDate}, <br>Days left: ${timeLeft}`;
 
 }
 
