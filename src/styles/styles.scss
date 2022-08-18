@@ -1,7 +1,8 @@
 @use './landing-style.scss';
+@import './vars.scss';
 
 body {  
-    background-color: #060913;
+    background-color: $background-color-dark;
     color: white;
 }
 
