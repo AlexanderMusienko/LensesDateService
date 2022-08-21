@@ -1,0 +1,27 @@
+@import './vars.scss';
+
+.sign-up-container {    
+    display: flex;
+    margin: auto auto;
+    flex-direction: row;
+    max-width: 700px;
+
+    .left-decoration-section {  
+        flex-grow: 1;
+    }
+
+    .right-form-section {   
+        flex-grow: 2;
+
+        .text-container {   
+
+        }
+
+        .input-container {  
+            display: flex;
+            flex-direction: column;
+        }
+
+    }
+
+}
