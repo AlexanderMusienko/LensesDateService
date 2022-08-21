@@ -1,25 +1,43 @@
-@import './vars.scss';
+@import './vars.scss';  
 
 .sign-up-container {    
     display: flex;
-    margin: auto auto;
     flex-direction: row;
-    max-width: 700px;
+    max-width: 600px;
+    margin: 10% auto 0;
+    border-radius: 20px;
+    background-color: #161B22;
+    overflow: hidden;
 
     .left-decoration-section {  
-        flex-grow: 1;
+        flex-grow: 2;
+        background-color: #e5e5f7;
+        opacity: 0.8;
+        background-image: repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 20px ), repeating-linear-gradient( #444cf755, #444cf7 );
     }
 
     .right-form-section {   
-        flex-grow: 2;
+        flex-grow: 1;
+        padding: 20px 30px;
 
         .text-container {   
-
+            margin-bottom: 15px;
         }
 
         .input-container {  
             display: flex;
             flex-direction: column;
+
+            .input-item {   
+                margin-bottom: 15px;
+                padding: 10px 15px;
+            }
+
+            .button {   
+                max-width: 50%;
+                padding: 10px 0px;
+            }
+
         }
 
     }
