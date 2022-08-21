@@ -8,6 +8,10 @@ function transformDayToMs(day) {
   return (day * 24 * 60 * 60 * 1000)
 }
 
+function transformMsToDay(ms) { 
+  return (ms / 1000 / 60 / 60 / 24)
+}
+
 function getInputInfo(event) {
   event.preventDefault();
 
@@ -32,9 +36,11 @@ function calcDate() {
 
   outputResult.nextDateMs = dateInfo.openDate.getTime() + (transformDayToMs(inputInfo.expiration));
   outputResult.nextDate = new Date(outputResult.nextDateMs);
+  outputResult.daysLeft = Math.round(transformMsToDay(outputResult.nextDate - dateInfo.todayDate));
 
   console.log(`Следующая дата в мс: ${outputResult.nextDateMs}`);
   console.log(`Следующая дата: ${outputResult.nextDate}`);
+  console.log(`Осталось дней: ${outputResult.daysLeft}`);
 } 
 
 form.addEventListener("submit", getInputInfo);
