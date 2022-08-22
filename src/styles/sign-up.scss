@@ -11,9 +11,23 @@
 
     .left-decoration-section {  
         flex-grow: 2;
-        background-color: #e5e5f7;
-        opacity: 0.8;
-        background-image: repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 20px ), repeating-linear-gradient( #444cf755, #444cf7 );
+        background:repeating-radial-gradient(
+            circle,
+            #444cf755,
+            #444cf7 45px,
+          );
+
+        animation: sign-up-decoration 10s linear infinite;
+
+        @keyframes sign-up-decoration {
+            0% {
+              background-size: 550%;
+            }
+            100% {
+              background-size: 250%;
+            }
+          }
+
     }
 
     .right-form-section {   
