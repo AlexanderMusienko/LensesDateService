@@ -1,130 +1,33 @@
 package apiserver
 
 import (
-	"Backend/internal/app/store"
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
+	"Backend/internal/app/store/sqlstore"
+	"database/sql"
 	"net/http"
-
-	"github.com/gorilla/mux"
-	"github.com/sirupsen/logrus"
 )
 
-type APIServer struct {
-	config *Config
-	logger *logrus.Logger
-	router *mux.Router
-	store  *store.Store
-}
-
-func New(config *Config) *APIServer {
-	return &APIServer{
-		config: config,
-		logger: logrus.New(),
-		router: mux.NewRouter(),
-		store: store.New(store.NewConfig()),
-	}
-}
-
-func (s *APIServer) Start() error {
-
-	if err := s.configureLogger(); err != nil {
-		return err
-	}
-
-	s.configureRouter()
-
-	if err := s.configureStore(); err != nil {
-		return err
-	}
-
-	s.logger.Info("starting api server")
-
-	return http.ListenAndServe(s.config.BindAddr, s.router)
-}
-
-func (s *APIServer) configureLogger() error {
-
-	level, err := logrus.ParseLevel(s.config.LogLevel)
-
+func Start(config *Config) error {
+	db, err := newDB(config.DatabaseURL)
 	if err != nil {
 		return err
 	}
+	
+	defer db.Close()
+	store := sqlstore.New(db)
+	srv:= newServer(store)
 
-	s.logger.SetLevel(level)
-
-	return nil
+	return http.ListenAndServe(config.BindAddr, srv)
 }
 
-func (s *APIServer) configureStore() error {
-	st := store.New(s.config.Store)
-	if err := store.Open(st); err != nil {
-		return err
+func newDB(databaseURL string) (*sql.DB, error) {
+	db, err := sql.Open("mysql", databaseURL)
+	if err != nil {
+		return nil, err
 	}
 
-	s.store = st
-
-	return nil
-}
-
-func (s *APIServer) configureRouter() {
-	s.router.HandleFunc("/hello", s.handleHello())
-	s.router.HandleFunc("/poster", s.handlePOST())
-	
-
-}
-
-func (s *APIServer) handleHello() http.HandlerFunc {
-
-	//...
-
-	return func(w http.ResponseWriter, r *http.Request) {
-
-		fileBytes, err := ioutil.ReadFile("test.png")
-		if err != nil {
-			panic(err)
-		}
-
-		w.WriteHeader(http.StatusOK)
-		w.Header().Set("Content-Type", "application/octet-stream")
-		w.Write(fileBytes)
-
-		s.logger.Info("кто то хочет пива")
-	}
-}
-
-func (s *APIServer) handlePOST() http.HandlerFunc {
-
-	//...
-
-	return func(w http.ResponseWriter, r *http.Request) {
-
-
-
-
-		var p struct{
-			Email string
-			Login string
-			Password string
-		}
-
-		// Try to decode the request body into the struct. If there is an error,
-		// respond to the client with the error message and a 400 status code.
-		err := json.NewDecoder(r.Body).Decode(&p)
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
-	
-		// Do something with the Person struct...
-		fmt.Println("Email: "+p.Email+"\n")
-		fmt.Println("Login: "+p.Login+"\n")
-		fmt.Println("Password: "+p.Password+"\n")
-
-
-
-	
+	if err := db.Ping(); err != nil {
+		return nil, err
 	}
 
+	return db, nil
 }
