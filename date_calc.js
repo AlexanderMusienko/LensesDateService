@@ -53,6 +53,7 @@ function renderOutput(outputResultObj) {
 
 addEventListener("submit", (e) => { 
   e.preventDefault();
+  
   const inputInfoObj = getInputInfo();
   const dateInfoObj = getOpenDate(inputInfoObj);
   const outputResultObj = calcDate(dateInfoObj, inputInfoObj);
