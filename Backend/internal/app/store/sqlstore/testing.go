@@ -18,14 +18,12 @@ func TestDB(t *testing.T, databaseURL string) (*sql.DB, func(... string)){
 	if err := db.Ping(); err != nil {
 		t.Fatal(err)
 	}
-	fmt.Println("dd")
 
 	return db, func(tables ...string) {
 		if len(tables) > 0 {
 			if _, err := db.Exec(fmt.Sprintf("TRUNCATE %s", strings.Join(tables,", "))); err != nil {
 				t.Fatal(err)
 			}
-			fmt.Println("123")
 		}
 
 		db.Close()

@@ -20,16 +20,18 @@ func (r *UserRepository) Create(u *model.User) error {
 	}
 
 	r.users[u.Email] = u
+	r.users[u.Login] = u
 	u.ID = len(r.users)
 
-	return nil 
+	return nil
 }
 
-func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
-	u, ok := r.users[email]
+func (r *UserRepository) FindByCredentails(credentialString string) (*model.User, error) {
+	u, ok := r.users[credentialString]
 	if !ok {
 		return nil, store.ErrRecordNotFound
 	}
 
 	return u, nil
+
 }

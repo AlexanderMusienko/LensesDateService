@@ -19,7 +19,7 @@ func TestUserRepository_Create(t *testing.T) {
 func TestUserRepository_FindByEmail(t *testing.T) {
 	s := teststore.New()
 	email := "user@test.ru"
-	_, err := s.User().FindByEmail(email)
+	_, err := s.User().FindByCredentails(email)
 	assert.EqualError(t, err, store.ErrRecordNotFound.Error())
 
 
@@ -28,7 +28,7 @@ func TestUserRepository_FindByEmail(t *testing.T) {
 	s.User().Create(u)
 
 
-	u, err = s.User().FindByEmail(email)
+	u, err = s.User().FindByCredentails(email)
 	assert.NoError(t, err)
 	assert.NotNil(t, u)
 
