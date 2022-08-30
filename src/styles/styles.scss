@@ -1,4 +1,4 @@
-@use './landing-style.scss';
+@use './landing.scss';
 @use './sign-up.scss';
 @use './sign-in.scss';
 @import './vars.scss';
@@ -17,6 +17,14 @@ a {
         color: white;
     }
 
+}
+
+input[type=button] {    
+    cursor: pointer;
+}
+
+input[type=submit] {    
+    cursor: pointer;
 }
 
 * { 

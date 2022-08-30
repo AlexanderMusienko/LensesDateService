@@ -1,13 +1,36 @@
 @import './vars.scss';
 
+.incorrect-glowing { 
+    animation: incorrect-glowing 5s ease-in-out;
+}
+
+.default-glowing {  
+    animation: glowing 10s ease-in-out infinite;
+}
+
 .sign-in-container {    
     display: flex;
     flex-direction: row;
     max-width: 600px;
     margin: 10% auto 0;
     border-radius: 20px;
+    background-image: linear-gradient(to left, $background-color-dark, #16163d, #07071b);
     background-color: #161B22;
     overflow: hidden;
+
+    @keyframes incorrect-glowing {  
+            0% {  
+                box-shadow: 0 0 0px #16163d;
+            }
+    
+            50% {   
+                box-shadow: 0 0 20px #aa4158;
+            }
+    
+            100% {    
+                box-shadow: 0 0 0px #16163d;
+            }
+    }
 
     
     .left-form-container {   
@@ -101,6 +124,7 @@
                 to {    
                     transform: translate(0, -400px);
                     opacity: 0;
+                    display: none;
                 }
             }
         }
