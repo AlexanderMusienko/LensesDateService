@@ -63,10 +63,9 @@ func (s *server) configureRouter() {
 	s.router.HandleFunc("/users", s.handleUsersCreate()).Methods("POST")
 	s.router.HandleFunc("/sessions", s.handleSessionCreate()).Methods("POST")
 
-	// private := s.router.PathPrefix("/private").Subrouter()
-	// private.Use(s.authenticateUser)
-	// private.HandleFunc("/whoami", s.handleWhoami()).Methods("GET")
-	s.router.HandleFunc("/", s.handleWhoami()).Methods("GET")
+	private := s.router.PathPrefix("/private").Subrouter()
+	private.Use(s.authenticateUser)
+	private.HandleFunc("/whoami", s.handleWhoami()).Methods("GET")
 }
 
 func (s *server) logRequest(next http.Handler) http.Handler {
@@ -101,12 +100,7 @@ func (s *server) setRequestId(next http.Handler) http.Handler {
 
 func (s *server) authenticateUser(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		s.logger.Info("Auth")
 		w = s.setHeaders(w)
-
-		s.logger.Info(r.Header.Get("Cookie"))
-		x:= r.Header.Values("Cookie")
-		s.logger.Info(x)
 
 		session, err := s.sessionStore.Get(r, sessionName)
 		if err != nil {
@@ -133,11 +127,8 @@ func (s *server) authenticateUser(next http.Handler) http.Handler {
 func (s *server) handleWhoami() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w = s.setHeaders(w)
-		s.logger.Info("whoami")
-		// w = s.setHeaders(w)
 
-		// s.respond(w, r, http.StatusOK, r.Context().Value(ctxKeyUser).(*model.User))
-		s.respond(w, r, 208,map[string]string{"error:": "hui"})
+		s.respond(w, r, http.StatusOK, r.Context().Value(ctxKeyUser).(*model.User))
 	}
 }
 
@@ -159,8 +150,6 @@ func (s *server) handleUsersCreate() http.HandlerFunc {
 			return
 		}
 
-		s.logger.Info(req.Email)
-
 		u := &model.User{
 			Login:    req.Login,
 			Email:    req.Email,
@@ -168,7 +157,6 @@ func (s *server) handleUsersCreate() http.HandlerFunc {
 		}
 		if err := s.store.User().Create(u); err != nil {
 			s.error(w, r, http.StatusUnprocessableEntity, err)
-			s.logger.Info(err)
 			return
 		}
 
@@ -205,10 +193,6 @@ func (s *server) handleSessionCreate() http.HandlerFunc {
 		}
 
 		session.Values["user_id"] = u.ID
-		session.Options.SameSite = http.SameSiteNoneMode
-		session.Options.Secure = true
-		session.Options.HttpOnly = true
-		session.Options.Path = "/"
 		if err := s.sessionStore.Save(r, w, session); err != nil {
 			s.error(w, r, http.StatusInternalServerError, err)
 			return
@@ -219,7 +203,6 @@ func (s *server) handleSessionCreate() http.HandlerFunc {
 }
 
 func (s *server) error(w http.ResponseWriter, r *http.Request, code int, err error) {
-	s.logger.Error("error")
 	s.respond(w, r, code, map[string]string{"error:": err.Error()})
 }
 
@@ -239,11 +222,9 @@ func (s *server) preflightHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
 	w.Header().Set("Access-Control-Expose-Headers", " Set-Cookie")
 	w.WriteHeader(200)
-	s.logger.Info("preflight")
 }
 
 func (s *server) setHeaders(w http.ResponseWriter) http.ResponseWriter {
-	s.logger.Info("setHeaders")
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	w.Header().Set("Access-Control-Allow-Headers", "X-Request-ID, Content-Type, User-Agent, Accept, Origin, Referer")
 	w.Header().Set("Connection", "keep-alive")
