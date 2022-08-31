@@ -29,7 +29,7 @@ function validateRegData(regData) {
 }
 
 function sendSignUpData(data) {
-  return fetch("http://37.235.202.133:5555/poster", {
+  return fetch("http://37.235.202.133:5555/users", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -43,12 +43,12 @@ addEventListener("submit", (e) => {
 
   const data = getSignUpForm();
   const isValidData = validateRegData(data);
+  console.log(data);
 
   if (isValidData) {
     sendSignUpData(data)
-    .then((response) => response.json())
-    .then(console.log)
-    .catch((error) => alert(error))
+    .then((response) => console.log(`Код ошибки ебло: ${response.status}`))
+    .catch((error) => {console.log(error)})
   } else {
     console.log("wrong");
   }

@@ -17,6 +17,17 @@ function getInputInfo() {
   return inputInfo;
 }
 
+function getWhoAmI() {  
+  return fetch("http://37.235.202.133:5555/private/whoami", {
+    method: "GET",
+    credentials: "include",
+    body: JSON.stringify(),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
+
 function getOpenDate(inputInfoObj) {  
   const dateInfo = {};
 
@@ -44,15 +55,18 @@ function calcDate(dateInfoObj, inputInfoObj) {
 } 
 
 function renderOutput(outputResultObj) {  
+
   const outputDiv = document.createElement('div');
   outputDiv.className = 'output';
-  const landingContainer = document.querySelector('.landing-container');
-  outputDiv.innerHTML = `Your next date: ${outputResultObj.nextDate.toLocaleDateString('en-US')} <br> Days left: ${outputResultObj.daysLeft}`;
+  const landingContainer = document.querySelector('.landing-container');  
   landingContainer.appendChild(outputDiv);
+  outputDiv.innerHTML = `Your next date: ${outputResultObj.nextDate.toLocaleDateString()}<br> Days left: ${outputResultObj.daysLeft}`;
+
 }
 
 addEventListener("submit", (e) => { 
   e.preventDefault();
+
   const inputInfoObj = getInputInfo();
   const dateInfoObj = getOpenDate(inputInfoObj);
   const outputResultObj = calcDate(dateInfoObj, inputInfoObj);
