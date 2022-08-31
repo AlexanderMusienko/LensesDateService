@@ -1,8 +1,8 @@
 const sendButton = document.getElementById('test-button-send');
 const getButton = document.getElementById('test-button-get');
 
-function getWhoAmI(data) {  
-    return fetch("https://5004-37-235-202-133.eu.ngrok.io", {
+function getWhoAmI() {  
+    return fetch("http://37.235.202.133:5555/private/whoami", {
       method: "GET",
       credentials: 'include',
       headers: {
@@ -13,7 +13,7 @@ function getWhoAmI(data) {
 
   
 function sendSignInData(data) {
-    return fetch("https://5004-37-235-202-133.eu.ngrok.io/sessions", {
+    return fetch("http://37.235.202.133:5555/sessions", {
       method: "POST",
       body: JSON.stringify(data),
       credentials: 'include',
