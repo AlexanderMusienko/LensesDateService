@@ -1,11 +1,9 @@
-const button = document.getElementById('test-button');
+const sendButton = document.getElementById('test-button-send');
+const getButton = document.getElementById('test-button-get');
 
-// document.cookie = 'LensesService=MTY2MTg5MjY2OXxEdi1CQkFFQ180SUFBUkFCRUFBQUh2LUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FEYVc1MEJBSUFJZz09fHGuGShaIcg5PF0DIyYC71sfMnsVxj9Ga1jo_sTqAQRd; Path=/; Expires=Thu, 29 Sep 2022 20:51:09 GMT; Max-Age=2592000';
-
-function getWhoAmI() {  
-    return fetch("https://9c3f-37-235-202-133.eu.ngrok.io/private/whoami", {
+function getWhoAmI(data) {  
+    return fetch("https://5004-37-235-202-133.eu.ngrok.io", {
       method: "GET",
-      body: JSON.stringify(),
       credentials: 'include',
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +13,7 @@ function getWhoAmI() {
 
   
 function sendSignInData(data) {
-    return fetch("https://9c3f-37-235-202-133.eu.ngrok.io/sessions", {
+    return fetch("https://5004-37-235-202-133.eu.ngrok.io/sessions", {
       method: "POST",
       body: JSON.stringify(data),
       credentials: 'include',
@@ -25,7 +23,7 @@ function sendSignInData(data) {
     });
   }
 
-button.addEventListener('click', (e) => { 
+sendButton.addEventListener('click', (e) => { 
     e.preventDefault();
     const signInInputObj = {    
         login: 'admin',
@@ -33,8 +31,16 @@ button.addEventListener('click', (e) => {
     }
 
     sendSignInData(signInInputObj)
-    
-    getWhoAmI()
-    .then((response) => console.log(response))
-    .catch((err) => console.log(err));
-})
+});
+
+getButton.addEventListener('click', (e) => { 
+  e.preventDefault();
+
+  getWhoAmI()
+  .then((response) => response.json()
+  .then((data) => {
+    document.getElementById('output').innerHTML = `getWhoAmI response: ${JSON.stringify(data)}`;
+    console.log(data)
+  }))
+  .catch((err) => document.getElementById('output').innerHTML = `getWhoAmI error: ${err}`);
+});

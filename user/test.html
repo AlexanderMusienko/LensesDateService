@@ -9,7 +9,9 @@
 
 <body>
 
-    <button class="button" id="test-button">Make some shit button</button>
+    <button class="button" id="test-button-send">SEND shit button</button>
+    <button class="button" id="test-button-get">GET shit button</button>
+    <div id="output"></div>
     <script src="./test.js"></script>
 
     <style>
@@ -21,10 +23,21 @@
             padding: 50px 100px;
             font-size: 24px;
             border-radius: 40px;
+            margin-bottom: 25px;
+            border: 1px solid transparent;
+        }
+
+        .button:hover { 
+            border: 1px solid rgb(255, 0, 0);
         }
 
         .button:active {    
             background-color: crimson;
+        }
+
+        #output {   
+            text-align: center;
+            font-size: 24px;
         }
     </style>
 

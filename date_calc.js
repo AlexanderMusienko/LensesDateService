@@ -17,8 +17,6 @@ function getInputInfo() {
   return inputInfo;
 }
 
-document.cookie = 'LensesService=MTY2MTg4NzQzOXxEdi1CQkFFQ180SUFBUkFCRUFBQUh2LUNBQUVHYzNSeWFXNW5EQWtBQjNWelpYSmZhV1FEYVc1MEJBSUFJZz09fN1BrabDQlPYObejSsxmnqfletBKD8RcjRz1MMaOLs0z Path=/ Expires=Thu, 29 Sep 2022 19:23:59 GMT Max-Age=2592000';
-
 function getWhoAmI() {  
   return fetch("http://37.235.202.133:5555/private/whoami", {
     method: "GET",
