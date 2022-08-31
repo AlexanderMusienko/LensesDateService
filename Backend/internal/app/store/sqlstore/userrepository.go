@@ -38,12 +38,34 @@ func (r *UserRepository) Create(u *model.User) error {
 	return nil
 }
 
-func (r *UserRepository) FindByCredentails(credentialString string) (*model.User, error) {
+func (r *UserRepository) FindByCredentials(credentialString string) (*model.User, error) {
 	u := &model.User{}
 	if err := r.store.db.QueryRow(
 		"SELECT id, email, login, encrypted_password FROM users WHERE email = ? OR login = ?",
 		credentialString,
 		credentialString,
+	).
+		Scan(
+		&u.ID,
+		&u.Email,
+		&u.Login,
+		&u.EncryptedPassword,
+	); err != nil {
+		if err == sql.ErrNoRows {
+			return nil, store.ErrRecordNotFound
+		}
+
+		return nil, err
+	}
+
+	return u, nil
+}
+
+func (r *UserRepository) FindById(id int) (*model.User, error) {
+	u := &model.User{}
+	if err := r.store.db.QueryRow(
+		"SELECT id, email, login, encrypted_password FROM users WHERE id = ?",
+		id,
 	).
 		Scan(
 		&u.ID,
