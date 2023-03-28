@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="static/styles.css"/>
+</head>
+
+<body>
+  <div class="landing-container">
+
+    <section class="navbar">
+
+      <a href="static/user/test.html" class="logo-home-link">
+        <img src="static/src/icons/contact-lens-svgrepo-com.svg">
+        <span class="logo-text-item">LensesDate</span>
+      </a>
+
+    </section>
+
+    <h1 class="header">Welcome to LensesDate!</h1>
+
+    <form id="main-form" class="form-container" action="">
+      <div class="input-field-container"> 
+        <input class="input-field" id="day-input" required placeholder="Day" type="text">
+        <input class="input-field" id="month-input" required placeholder="Month" type="text">
+      </div>
+
+      <select class="option-container" required>
+        <option id="select-placeholder" disabled selected hidden value="">Expiration</option>
+        <option value="14">Two weeks</option>
+        <option value="30">Month</option>
+      </select>
+
+      <input class="main-button" type="submit" value="Submit"></input>
+    </form>
+    <script type="module" src="static/date_calc.js"></script>
+    <script type="module" src="static/session.js"></script>
+  </div>
+  <script id="__bs_script__">
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.27.10'><\/script>".replace("HOST", location.hostname));
+  </script>
+</body>
+
+</html>

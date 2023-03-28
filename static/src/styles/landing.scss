@@ -1,0 +1,142 @@
+@import './vars.scss';
+
+.landing-container {    
+
+    .navbar {   
+        background-color: $soft-element-dark-color;
+        height: 70px;
+        margin-bottom: 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & > :first-child {    
+            margin-left: 35px;
+        }
+
+        & > :last-child {    
+            margin-right: 35px;
+        }
+
+        .logo-home-link {   
+            display: flex;
+            align-items: center;
+            height: 65%;
+            font-size: 24px;
+
+            img {   
+                height: 100%;
+                filter: invert(90%);
+                margin-right: 10px;
+            }
+
+            .logo-text-item {   
+                text-shadow: 5px 3px 5px #060913;
+                font-size: 24px;
+                font-weight: 500;
+                text-align: center;
+                color: #E5E5E4;
+            }
+        }
+
+        .profile-item {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+
+            img {   
+                margin-left: 10px;
+                width: 40px;
+                border-radius: 30px;
+                border: 1px solid white;
+            }
+        }
+
+        .sign-container {   
+
+            & > :first-child {  
+                margin-right: 20px;
+                padding: 5px 10px;
+                border-radius: 20px;
+                border: 1px solid rgb(255, 255, 255);
+            }
+
+            & > :last-child {  
+                padding: 5px 10px;
+                background-color: white;
+                border-radius: 20px;
+                color: #060913;
+            }
+
+            *:hover { 
+                box-shadow: 0px 0px 10px #ffffff;
+            }
+        }
+    }
+
+    .header {   
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .form-container {   
+        display: flex;
+        flex-direction: column;
+        padding: 0 200px;
+        min-width: 560px;
+        max-width: 750px;
+        margin: 0 auto;
+        margin-bottom: 25px;
+
+        .input-field-container {    
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            .input-field {  
+                width: 45%;
+                min-width: 75px;
+                text-align: center;
+                padding: 25px 10px;
+                border: 1px solid #292929;
+                border-radius: $input-border-radius;
+                font-size: 16px;
+            }
+        }
+
+        .option-container { 
+            border: 1px solid #292929;
+            border-radius: $input-border-radius;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 25px 10px;
+            font-size: 16px;
+
+        }
+
+        .main-button {  
+            background-color: #93ff92;
+            padding: 25px 10px;
+            border: 1px solid #3a3434;
+            border-radius: $input-border-radius;
+            font-size: 16px;
+
+            &:hover {   
+                background-color: #57ff55;
+            }
+
+        }
+
+    }
+
+    .output {   
+        text-align: center;
+        font-size: 32px;
+    }
+}
+
+.user-welcome { 
+    display: flex;
+    justify-content: center;
+    font-size: 45px;
+}

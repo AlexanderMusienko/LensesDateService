@@ -1,0 +1,11 @@
+@mixin card {
+    display: flex;
+    flex-direction: row;
+    max-width: 600px;
+    margin: 10% auto 0;
+    border-radius: 20px;
+    background-image: linear-gradient(to left, $background-color-dark, #16163d, #07071b);
+    background-color: #161B22;
+    overflow: hidden;
+
+}
