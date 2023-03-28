@@ -1,4 +1,4 @@
-bind_addr = ":5555"
+bind_addr = ":8080"
 log_level = "debug"
-database_url = "root:123456@tcp(127.0.0.1:3306)/lensesdb"
+database_url = "root:123456@tcp(mysql:3306)/lensesdb"
 session_key = "c2FzaGFhbmRlZ29yZ2F5c3Nhc2hhYW5kZWdvcmdheXNzYXNoYWFuZGVnb3JnYXlz"

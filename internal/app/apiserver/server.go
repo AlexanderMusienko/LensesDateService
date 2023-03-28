@@ -61,7 +61,7 @@ func (s *server) configureRouter() {
 	})
 	s.router.Use(s.setRequestId)
 	s.router.Use(s.logRequest)
-	s.router.PathPrefix("/static").Handler(http.StripPrefix("/static",http.FileServer(http.Dir("../"))))
+	s.router.PathPrefix("/static").Handler(http.StripPrefix("/static",http.FileServer(http.Dir("./static/"))))
 
 	s.router.HandleFunc("/users", s.handleUsersCreate()).Methods("POST")
 	s.router.HandleFunc("/sessions", s.handleSessionCreate()).Methods("POST")
@@ -150,7 +150,7 @@ func (s *server) handleHomePage() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w = s.setHeaders(w)
 
-		t, err := template.ParseFiles("../index.html")
+		t, err := template.ParseFiles("./static/index.html")
 		if err != nil {
 			s.error(w, r, http.StatusNotFound, err)
 		}
