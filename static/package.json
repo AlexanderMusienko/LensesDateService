@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp"
+    "start": "gulp",
+    "server": "cd ./backend && start apiserver.exe && gulp dev"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,10 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-watch": "^5.0.1",
     "sass": "^1.54.2"
+  },
+  "dependencies": {
+    "gulp-cli": "^2.3.0",
+    "gulp-livereload": "^4.0.2",
+    "gulp-run": "^1.7.1"
   }
 }

@@ -1,0 +1,22 @@
+version: '3.8' 
+services:   
+  web:
+    build: ./
+    command: ./apiserver
+    ports:
+      - 80:8080
+    depends_on:
+      - db
+
+  db:
+    container_name: mysql
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=lensesdb
+    volumes:
+      - ./migrations/000001_create_users.up.sql:/docker-entrypoint-initdb.d/000001_create_users.up.sql
+    ports:
+      - "3350:3306"
+
