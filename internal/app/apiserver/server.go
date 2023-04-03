@@ -66,9 +66,9 @@ func (s *server) configureRouter() {
 	s.router.HandleFunc("/users", s.handleUsersCreate()).Methods("POST")
 	s.router.HandleFunc("/sessions", s.handleSessionCreate()).Methods("POST")
 
-	s.router.HandleFunc("/home", s.handleHomePage()).Methods("GET")
-	s.router.HandleFunc("/sign-in", s.handleSignInPage()).Methods("GET")
-	s.router.HandleFunc("/sign-up", s.handleSignUpPage()).Methods("GET")
+	s.router.HandleFunc("/", s.handleHTML("./static/index.html")).Methods("GET")
+	s.router.HandleFunc("/sign-in", s.handleHTML("./static/pages/sign-in.html")).Methods("GET")
+	s.router.HandleFunc("/sign-up", s.handleHTML("./static/pages/sign-up.html")).Methods("GET")
 
 	private := s.router.PathPrefix("/private").Subrouter()
 	private.Use(s.authenticateUser)
@@ -108,7 +108,7 @@ func (s *server) setRequestId(next http.Handler) http.Handler {
 
 func (s *server) authenticateUser(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w = s.setHeaders(w)
+		w.Header().Set("content-type", "application/json")
 
 		session, err := s.sessionStore.Get(r, sessionName)
 		if err != nil {
@@ -146,29 +146,11 @@ func (s *server) handleAvatar() http.HandlerFunc {
 	}
 }
 
-func (s *server) handleHomePage() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		w = s.setHeaders(w)
+func (s *server) handleHTML(htmlStr string) http.HandlerFunc {
+	return func (w http.ResponseWriter, r *http.Request)  {
+		w.Header().Set("content-type", "text/html; charset=utf-8")
 
-		t, err := template.ParseFiles("./static/index.html")
-		if err != nil {
-			s.error(w, r, http.StatusNotFound, err)
-		}
-
-		if err := t.Execute(w,nil); err != nil {
-			s.error(w, r, http.StatusNotFound, err)
-		}
-
-
-		s.respond(w, r, http.StatusOK, nil)
-	}
-}
-
-func (s *server) handleSignInPage() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		w = s.setHeaders(w)
-
-		t, err := template.ParseFiles("../user/sign-in.html")
+		t, err := template.ParseFiles(htmlStr)
 		if err != nil {
 			s.error(w, r, http.StatusNoContent, err)
 		}
@@ -179,30 +161,13 @@ func (s *server) handleSignInPage() http.HandlerFunc {
 
 
 		s.respond(w, r, http.StatusOK, nil)
-	}
-}
 
-func (s *server) handleSignUpPage() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		w = s.setHeaders(w)
-
-		t, err := template.ParseFiles("../user/sign-up.html")
-		if err != nil {
-			s.error(w, r, http.StatusNoContent, err)
-		}
-
-		if err := t.Execute(w,nil); err != nil {
-			s.error(w, r, http.StatusNoContent, err)
-		}
-
-
-		s.respond(w, r, http.StatusOK, nil)
 	}
 }
 
 func (s *server) handleWhoami() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w = s.setHeaders(w)
+		w.Header().Set("content-type", "application/json")
 
 		s.respond(w, r, http.StatusOK, r.Context().Value(ctxKeyUser).(*model.User))
 	}
@@ -217,7 +182,7 @@ func (s *server) handleUsersCreate() http.HandlerFunc {
 	}
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		w = s.setHeaders(w)
+		w.Header().Set("content-type", "application/json")
 
 		req := &request{}
 
@@ -248,7 +213,7 @@ func (s *server) handleSessionCreate() http.HandlerFunc {
 	}
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		w = s.setHeaders(w)
+		w.Header().Set("content-type", "application/json")
 
 		req := &request{}
 		if err := json.NewDecoder(r.Body).Decode(req); err != nil {
@@ -290,24 +255,12 @@ func (s *server) respond(w http.ResponseWriter, r *http.Request, code int, data 
 }
 
 func (s *server) preflightHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5555")
-	w.Header().Set("Access-Control-Allow-Headers", "X-Request-ID, Content-Type, User-Agent, Accept, Origin, Referer")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:8080")
+	w.Header().Set("Access-Control-Allow-Headers", "X-Request-ID, Content-Type")
 	w.Header().Add("Connection", "keep-alive")
 	w.Header().Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE, PUT")
 	w.Header().Add("Access-Control-Max-Age", "86400")
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
 	w.Header().Set("Access-Control-Expose-Headers", " Set-Cookie")
 	w.WriteHeader(200)
-}
-
-func (s *server) setHeaders(w http.ResponseWriter) http.ResponseWriter {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5555")
-	w.Header().Set("Access-Control-Allow-Headers", "X-Request-ID, Content-Type, User-Agent, Accept, Origin, Referer")
-	w.Header().Set("Connection", "keep-alive")
-	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE, PUT")
-	w.Header().Set("Access-Control-Max-Age", "86400")
-	w.Header().Set("Access-Control-Allow-Credentials", "true")
-	w.Header().Set("Access-Control-Expose-Headers", " Set-Cookie")
-
-	return w
 }
