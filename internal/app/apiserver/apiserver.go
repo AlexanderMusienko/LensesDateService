@@ -12,7 +12,7 @@ import (
 
 func Start(config *Config) error {
 	if host:= os.Getenv("HOST"); host != "" {
-		config.DatabaseURL = strings.Replace(config.DatabaseURL,"localhost:3306",host +":3350",1) 
+		config.DatabaseURL = strings.Replace(config.DatabaseURL,"localhost:3350",host +":3306",1) 
 	}
 
 	db, err := newDB(config.DatabaseURL)
