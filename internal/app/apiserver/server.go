@@ -168,7 +168,7 @@ func (s *server) handleSignInPage() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w = s.setHeaders(w)
 
-		t, err := template.ParseFiles("../user/sign-in.html")
+		t, err := template.ParseFiles("./static/pages/sign-in.html")
 		if err != nil {
 			s.error(w, r, http.StatusNoContent, err)
 		}
@@ -186,7 +186,7 @@ func (s *server) handleSignUpPage() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w = s.setHeaders(w)
 
-		t, err := template.ParseFiles("../user/sign-up.html")
+		t, err := template.ParseFiles("./pages/sign-up.html")
 		if err != nil {
 			s.error(w, r, http.StatusNoContent, err)
 		}

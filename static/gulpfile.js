@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass')(require('sass'));
-const livereload = require('gulp-livereload');
 
 // Static Server + watching scss/html files
 gulp.task('serve', function() {
@@ -26,16 +25,16 @@ gulp.task('sass', function() {
 gulp.task('watch', function() {  
 
   browserSync.init({
-    host: "localhost:5555/home"
+    host: "localhost:8080/home"
   });
 
-  gulp.watch("src/styles/**/*.scss", gulp.series('scssconvert'));
+  gulp.watch("src/styles/**/*.scss", gulp.series('scssConvert'));
   gulp.watch("./*.html").on('change', browserSync.reload);
   gulp.watch("./*.js").on('change', browserSync.reload);
 })
 
 // Compile scss into css
-gulp.task('scssconvert', function() {  
+gulp.task('scssConvert', function() {  
   return gulp.src("src/styles/styles.scss")
   .pipe(sass().on('error', sass.logError))
   .pipe(gulp.dest("./"))
@@ -43,4 +42,4 @@ gulp.task('scssconvert', function() {
 })
 
 gulp.task('default', gulp.series('serve', 'sass'));
-gulp.task('dev', gulp.series('watch', 'scssconvert'));
+gulp.task('dev', gulp.series('watch', 'scssConvert'));
