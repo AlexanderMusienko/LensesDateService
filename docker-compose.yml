@@ -7,6 +7,8 @@ services:
       - 80:8080
     depends_on:
       - db
+    environment:
+      - HOST=mysql
 
   db:
     container_name: mysql

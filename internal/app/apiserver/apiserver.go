@@ -4,11 +4,17 @@ import (
 	"Backend/internal/app/store/sqlstore"
 	"database/sql"
 	"net/http"
+	"os"
+	"strings"
 
 	"github.com/gorilla/sessions"
 )
 
 func Start(config *Config) error {
+	if host:= os.Getenv("HOST"); host != "" {
+		config.DatabaseURL = strings.Replace(config.DatabaseURL,"localhost:3306",host +":3350",1) 
+	}
+
 	db, err := newDB(config.DatabaseURL)
 	if err != nil {
 		return err
