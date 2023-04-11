@@ -1,6 +1,6 @@
-import { virtualDom } from "./html_assist.js";
+import { VirtualDom } from "./html_assist.js";
 
-const dom = new virtualDom();
+const dom = new VirtualDom();
 
 dom.elementTree = [
   {
@@ -10,7 +10,7 @@ dom.elementTree = [
       {
         element: dom.createElem("div"),
         children: [
-          { element: dom.createElem(["div", "hello", "child"]), children: {} },
+          { element: dom.createElem("div", {innerHTML: "hello"}), children: {} },
           { element: dom.createElem("div"), children: {} },
         ],
       },
@@ -19,6 +19,3 @@ dom.elementTree = [
 ];
 
 dom.render();
-
-console.log(dom.elementTree);
-console.log("its app.js");

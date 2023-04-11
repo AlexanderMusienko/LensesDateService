@@ -25,7 +25,7 @@ gulp.task('sass', function() {
 gulp.task('watch', function() {  
 
   browserSync.init({
-    host: "localhost:8080/home"
+    host: "localhost:8080"
   });
 
   gulp.watch("src/styles/**/*.scss", gulp.series('scssConvert'));

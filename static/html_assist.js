@@ -1,16 +1,4 @@
-/* Следующая абстракция: наш виртуальный дом это обыкновенный массив js dom элементов, 
-которые создаются при помощи самописной функции-конструктора, методы, которой описаны в отдельном классе 
-
-Исходя из этого, метод создания элемента добавляет (пушит) этот элемент в наш "виртуальный дом" 
-
-Есть проблема вложенности элементов, обратить внимание на поле children html элемента 
-
-Рендер метод ссылается на html элемент id которого равняется root
-Этот метод вызывает append для каждого элемента массива
-
-*/
-
-export class virtualDom {
+export class VirtualDom {
   elementTree = [];
 
   render() {
@@ -31,14 +19,14 @@ export class virtualDom {
     });
   }
 
-  createElem(tag, innerHTML, className) {
+  createElem(tag, props) {
     const elem = document.createElement(tag);
 
-    if (innerHTML) {
-      elem.innerHTML = innerHTML;
-    }
-    if (className) {
-      elem.classList.add(className);
+    if (props) {
+      Object.entries(props).forEach(([key, value]) => {
+        elem[key] = value;
+        console.log(`props: ${key}:${value}`);
+      })
     }
 
     return elem;
