@@ -19,6 +19,11 @@ export class VirtualDom {
     });
   }
 
+  /**
+ * @param {string} tag HTML tag that will be created with document.createElement(tag)
+ * @param {Object} props Object assigning to htmlElement fields (such as innerHTML)
+ */
+
   createElem(tag, props) {
     const elem = document.createElement(tag);
 
