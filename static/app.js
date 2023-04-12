@@ -1,21 +1,6 @@
 import { VirtualDom } from "./html_assist.js";
 
-const dom = new VirtualDom();
+import { SignInPage } from "./pages/sign_in.js";
 
-dom.elementTree = [
-  {
-    id: "landing-header",
-    element: dom.createElem("div"),
-    children: [
-      {
-        element: dom.createElem("div"),
-        children: [
-          { element: dom.createElem("div", {innerHTML: "hello"}), children: {} },
-          { element: dom.createElem("div"), children: {} },
-        ],
-      },
-    ],
-  },
-];
 
-dom.render();
+SignInPage.render();

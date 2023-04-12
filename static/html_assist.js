@@ -5,7 +5,7 @@ export class VirtualDom {
     const root = document.getElementById("root");
 
     function subRender(elemObj) {
-      if (elemObj.children.length) {
+      if (elemObj?.children?.length) {
         elemObj.children.forEach((innerElemObj) => {
           elemObj.element.append(innerElemObj.element);
           subRender(innerElemObj);
@@ -19,7 +19,7 @@ export class VirtualDom {
     });
   }
 
-  /**
+/**
  * @param {string} tag HTML tag that will be created with document.createElement(tag)
  * @param {Object} props Object assigning to htmlElement fields (such as innerHTML)
  */

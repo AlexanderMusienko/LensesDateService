@@ -1,67 +1,67 @@
-import path from "../path.js";
+import { VirtualDom } from "../html_assist.js";
 
-function getSignInInput() {
-  const signInInput = {};
+const SignInPage = new VirtualDom();
 
-  signInInput.login = document.getElementById("login").value;
-  signInInput.password = document.getElementById("password").value;
+const { createElem } = SignInPage;
 
-  console.log(signInInput);
-  return signInInput;
-}
+SignInPage.elementTree = [
+  {
+    element: createElem("section", {
+      className: "sign-in-container default-glowing",
+    }),
+    children: [
+      {
+        element: createElem("div", { className: "form-container" }),
+        children: [
+          {
+            element: createElem("div", { className: "text-container" }),
+            children: [
+              { element: createElem("h3", { innerText: "Welcome back!" }) },
+              {
+                element: createElem("span", {
+                  innerText: "You can sign in to save and track your history",
+                }),
+              },
+            ],
+          },
+          {
+            element: createElem("form", {
+              className: "input-container",
+              id: "sign-in-input",
+            }),
+            children: [
+              {
+                element: createElem("input", {
+                  className: "input-item",
+                  id: "login",
+                }),
+              },
+              {
+                element: createElem("input", {
+                  className: "input-item",
+                  id: "password",
+                  type: "password",
+                }),
+              },
+              { element: createElem("input", { type: "submit", value: "Sign In", className: "button" }) },
+            ],
+          },
+        ],
+      },
+      {
+        element: createElem("div", { className: "decoration-container" }),
+        children: [
+          { element: createElem("div", { className: "decoration-wave wave-1" }) },
+          { element: createElem("div", { className: "decoration-wave wave-2" }) },
+          { element: createElem("div", { className: "decoration-wave wave-3" }) },
+          { element: createElem("div", { className: "decoration-wave wave-4" }) },
+          { element: createElem("div", { className: "decoration-wave wave-5" }) },
+        ],
+      },
+    ],
+  },
 
-function sendSignInData(data) {
-  console.log(path);
-  return fetch(`${path}/sessions`, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-}
+  {element: createElem("script", {type: "module", src: "static/src/scripts/login.js"})}
+];
 
-function signInWelcome(element, login) {
-  element.classList.add("disappear");
-  const welcomeElement = document.createElement("div");
-  welcomeElement.className = "user-welcome";
-  welcomeElement.innerHTML = `Welcome, ${login}`;
-
-  setTimeout(() => {
-    document.body.appendChild(welcomeElement);
-  }, 2000);
-
-  setTimeout(() => {
-    window.location.replace("/home");
-  }, 3000);
-}
-
-async function showIncorrectGlowing(element) {
-  element.classList.remove("default-glowing");
-  element.classList.add("incorrect-glowing");
-
-  await new Promise(() =>
-    setTimeout(() => {
-      element.classList.remove("incorrect-glowing");
-      element.classList.add("default-glowing");
-    }, 5000)
-  );
-  console.log("Done");
-}
-
-addEventListener("submit", (e) => {
-  e.preventDefault();
-  const signInElement = document.querySelector(".sign-in-container");
-  const signInInputObj = getSignInInput();
-
-  sendSignInData(signInInputObj)
-    .then((response) => {
-      if (response.ok) {
-        response.json()
-        .then((data) => signInWelcome(signInElement, data));
-      } else {
-        showIncorrectGlowing(signInElement);
-      }
-    })
-    .catch((error) => console.log(`sendSignInData catch: ${error}`));
-});
+export { SignInPage };
