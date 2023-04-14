@@ -7,21 +7,7 @@
     justify-content: center;
     align-items: center;
 
-    @keyframes glowing {
-        0% {
-            box-shadow: 0 0 0px #16163d;
-        }
-
-        50% {
-            box-shadow: 0 0 20px #4141aa;
-        }
-
-        100% {
-            box-shadow: 0 0 0px #16163d;
-        }
-    }
-
-    .form-section {
+    .form-container {
         flex-grow: 1;
         padding: 4rem 6rem;
         max-width: 60rem;
@@ -30,14 +16,17 @@
         background-size: auto;
         background-image: url("/static/src/images/rainbow-vortex.svg");
         background-size: cover;
-        animation: glowing 10s ease-in-out infinite;
         border-radius: 2rem;
+        backdrop-filter: blur(2px);
+        box-shadow: inset #00000080 0px 0px 45px 10px;
+        border: 1px solid rgb(68, 68, 68);
 
         .text-container {
             margin-bottom: 2.5rem;
 
             span {
                 font-weight: 600;
+
             }
         }
 

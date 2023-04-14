@@ -89,3 +89,40 @@ input[type=submit] {
 
     transition: all 0.15s ease-in-out;
 }
+
+.default-glowing {
+    animation: glowing 10s ease-in-out infinite;
+
+    @keyframes glowing {
+        0% {
+            box-shadow: 0 0 0px #16163d;
+        }
+
+        50% {
+            box-shadow: 0 0 20px #4141aa;
+        }
+
+        100% {
+            box-shadow: 0 0 0px #16163d;
+        }
+    }
+}
+
+.incorrect-glowing {
+    animation: incorrect-glowing 5s ease-in-out;
+
+    @keyframes incorrect-glowing {
+        0% {
+            box-shadow: 0 0 0px #16163d;
+        }
+    
+        50% {
+            box-shadow: 0 0 20px #aa4158;
+        }
+    
+        100% {
+            box-shadow: 0 0 0px #16163d;
+        }
+    }
+}
+

@@ -11,7 +11,7 @@ SignUpPage.elementTree = [
     }),
     children: [
       {
-        element: createElem("div", { className: "form-section" }),
+        element: createElem("div", { className: "form-container default-glowing" }),
         children: [
           {
             element: createElem("div", { className: "text-container" }),
@@ -70,9 +70,11 @@ SignUpPage.elementTree = [
     ],
   },
   {
-    element: createElem("script", {src: "./static/src/scripts/registration.js", type: "module"})
-  }
+    element: createElem("script", {
+      src: "./static/src/scripts/registration.js",
+      type: "module",
+    }),
+  },
 ];
 
-
-export {SignUpPage};
+export { SignUpPage };

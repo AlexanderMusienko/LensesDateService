@@ -1,14 +1,6 @@
 @import './vars.scss';
 @import './mixins.scss';
 
-.incorrect-glowing {
-    animation: incorrect-glowing 5s ease-in-out;
-}
-
-.default-glowing {
-    animation: glowing 10s ease-in-out infinite;
-}
-
 .sign-in-page-container {
     height: 100vh;
     display: flex;
@@ -26,7 +18,6 @@
 
         .form-container {
             padding: 40px 30px;
-            backdrop-filter: blur(2px);
             box-shadow: inset #00000080 0px 0px 45px 10px;
             border-radius: 1.5rem;
 
@@ -105,16 +96,3 @@
     }
 }
 
-@keyframes incorrect-glowing {
-    0% {
-        box-shadow: 0 0 0px #16163d;
-    }
-
-    50% {
-        box-shadow: 0 0 20px #aa4158;
-    }
-
-    100% {
-        box-shadow: 0 0 0px #16163d;
-    }
-}
