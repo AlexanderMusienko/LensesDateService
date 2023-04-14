@@ -6,7 +6,7 @@ Frontend: @AlexanderMusienko
 This project was made for tracking expiration date of contact lenses.
 
 # Stack
-Backend: Golang, MySQL
+Backend: Golang, MySQL  
 Frontend: Vanilla JavaScript, CSS3, HTML5, gulp, Sass
 
 # Functionality
