@@ -30,7 +30,7 @@ gulp.task('watch', function() {
 
   gulp.watch("src/styles/**/*.scss", gulp.series('scssConvert'));
   gulp.watch("./*.html").on('change', browserSync.reload);
-  gulp.watch("./*.js").on('change', browserSync.reload);
+  gulp.watch("./**/*.js").on('change', browserSync.reload);
 })
 
 // Compile scss into css

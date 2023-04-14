@@ -1,0 +1,23 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 1600 800'>
+    <rect fill='#0C0920' width='1600' height='800' />
+    <g stroke='#0F0C29' stroke-width='66.7' stroke-opacity='0.5'>
+        <circle fill='#0C0920' cx='0' cy='0' r='1800' />
+        <circle fill='#0e0b23' cx='0' cy='0' r='1700' />
+        <circle fill='#0f0e25' cx='0' cy='0' r='1600' />
+        <circle fill='#101028' cx='0' cy='0' r='1500' />
+        <circle fill='#11112b' cx='0' cy='0' r='1400' />
+        <circle fill='#12132d' cx='0' cy='0' r='1300' />
+        <circle fill='#141430' cx='0' cy='0' r='1200' />
+        <circle fill='#151633' cx='0' cy='0' r='1100' />
+        <circle fill='#161736' cx='0' cy='0' r='1000' />
+        <circle fill='#181839' cx='0' cy='0' r='900' />
+        <circle fill='#19193c' cx='0' cy='0' r='800' />
+        <circle fill='#1b1b3e' cx='0' cy='0' r='700' />
+        <circle fill='#1d1c41' cx='0' cy='0' r='600' />
+        <circle fill='#1e1d44' cx='0' cy='0' r='500' />
+        <circle fill='#201e47' cx='0' cy='0' r='400' />
+        <circle fill='#22204a' cx='0' cy='0' r='300' />
+        <circle fill='#23214d' cx='0' cy='0' r='200' />
+        <circle fill='#252250' cx='0' cy='0' r='100' />
+    </g>
+</svg>
