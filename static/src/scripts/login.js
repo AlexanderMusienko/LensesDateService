@@ -31,9 +31,9 @@ function signInWelcome(element, login) {
     document.body.appendChild(welcomeElement);
   }, 2000);
 
-  setTimeout(() => {
-    window.location.replace("/home");
-  }, 3000);
+  // setTimeout(() => {
+  //   window.location.replace("/home");
+  // }, 3000);
 }
 
 async function showIncorrectGlowing(element) {

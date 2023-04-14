@@ -1,4 +1,4 @@
-import path from "../path.js";
+import path from "./path.js";
 
 function getSignUpForm() {
   const signUpObj = {};

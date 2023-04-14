@@ -1,99 +1,57 @@
-@import './vars.scss';  
+@import './vars.scss';
+@import './mixins.scss';
 
-.sign-up-container {    
+.sign-up-container {
+    height: 100vh;
     display: flex;
-    flex-direction: row;
-    max-width: 600px;
-    margin: 10% auto 0;
-    border-radius: 20px;
-    background-image: linear-gradient(to right, $background-color-dark, #16163d, #07071b);
-    overflow: hidden;
-    animation: glowing 10s ease-in-out infinite;
+    justify-content: center;
+    align-items: center;
 
     @keyframes glowing {
-        0% {  
+        0% {
             box-shadow: 0 0 0px #16163d;
         }
 
-        50% {   
+        50% {
             box-shadow: 0 0 20px #4141aa;
         }
 
-        100% {    
+        100% {
             box-shadow: 0 0 0px #16163d;
         }
     }
 
-    .left-decoration-section {  
-        flex-grow: 2;
-        position: relative;
-        overflow: hidden;
-
-        .wave-1 {    
-            animation: decoration-wave 10s linear infinite;
-        }
-
-        .wave-2 {    
-            animation: decoration-wave 10s 2s linear infinite;
-        }
-
-        .wave-3 {    
-            animation: decoration-wave 10s 4s linear infinite;
-        }
-
-        .wave-4 {    
-            animation: decoration-wave 10s 6s linear infinite;
-        }
-
-        .wave-5 {    
-            animation: decoration-wave 10s 8s linear infinite;
-        }
-
-        .decoration-wave {  
-            overflow: hidden;
-            background: repeating-radial-gradient(circle, #131546, #444cf7 80px);
-            border-radius: 300px;
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            top: 20%;
-            right: -200px;
-
-            @keyframes decoration-wave {
-                0% {    
-                    opacity: 1;
-                }
-
-                100% {  
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-
-        }
-
-    }
-
-    .right-form-section {   
+    .form-section {
         flex-grow: 1;
-        padding: 20px 30px;
+        padding: 4rem 6rem;
+        max-width: 60rem;
+        background: #0f0c29;
+        background-image: none;
+        background-size: auto;
+        background-image: url("/static/src/images/rainbow-vortex.svg");
+        background-size: cover;
+        animation: glowing 10s ease-in-out infinite;
+        border-radius: 2rem;
 
-        .text-container {   
-            margin-bottom: 15px;
+        .text-container {
+            margin-bottom: 2.5rem;
+
+            span {
+                font-weight: 600;
+            }
         }
 
-        .input-container {  
+        .input-container {
             display: flex;
             flex-direction: column;
 
-            .input-item {   
-                margin-bottom: 15px;
-                padding: 10px 15px;
+            .input-item {
+                @include input-item;
+                margin-bottom: 2.5rem;
             }
 
-            .button {   
-                max-width: 50%;
-                padding: 10px 0px;
+            .button {
+                padding: 1.3rem 0;
             }
 
         }

@@ -89,14 +89,13 @@ SignInPage.elementTree = [
           },
         ],
       },
-
-      {
-        element: createElem("script", {
-          type: "module",
-          src: "static/src/scripts/login.js",
-        }),
-      },
     ],
+  },
+  {
+    element: createElem("script", {
+      type: "module",
+      src: "static/src/scripts/login.js",
+    }),
   },
 ];
 
