@@ -1,7 +1,7 @@
 # LensesDateService
 
-Backend: @NoireHub
-Frontend: @AlexanderMusienko
+Backend: @NoireHub  
+Frontend: @AlexanderMusienko  
 
 This project was made for tracking expiration date of contact lenses.
 
